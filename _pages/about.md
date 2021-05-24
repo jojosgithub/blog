@@ -8,4 +8,4 @@ I'm a researcher at the National Research Council of Italy at the "Giulio Natta"
 
 
 
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+
