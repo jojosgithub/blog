@@ -142,7 +142,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">number_of_rows</span> <span class="o">&lt;-</span> <span class="m">10</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">number_of_rows</span> <span class="o">&lt;-</span> <span class="m">7</span>
 <span class="n">number_of_cols</span> <span class="o">&lt;-</span> <span class="m">6</span>
 <span class="n">my_mean</span> <span class="o">&lt;-</span> <span class="m">2</span>
 <span class="n">my_sd</span> <span class="o">&lt;-</span> <span class="m">0.5</span>
@@ -153,7 +153,9 @@ window.onload = wrap_img;
            <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">number_of_rows</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">my_mean</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">my_sd</span> <span class="p">))</span>
            <span class="p">)</span>
 
-<span class="c1">#we are creating a dataframe from a matrix obtained replicating x the desired number_of_cols a vector of length number_of_rows from a normal distribution rnorm with a mean of my mean and standard deviation as sd</span>
+<span class="c1"># we are creating a dataframe from a matrix obtained replicating x </span>
+<span class="c1"># the desired number_of_cols a vector of length number_of_rows from </span>
+<span class="c1"># a normal distribution rnorm with a mean of my mean and standard deviation as sd</span>
 
 <span class="nf">head</span><span class="p">(</span><span class="n">newdat</span><span class="p">)</span>
 </pre></div>
@@ -501,7 +503,11 @@ with n row = 50. means are 100,110,120 and sd 1,2,3</li>
 
 <span class="c1">#sorted</span>
 
-<span class="n">my_labels_sorted</span> <span class="o">&lt;-</span> <span class="nf">sort</span><span class="p">(</span><span class="nf">replicate</span><span class="p">(</span><span class="n">n_replicates</span><span class="p">,</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="kc">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">dictionary_size</span><span class="p">],</span> <span class="n">label_length</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> <span class="n">collapse</span><span class="o">=</span><span class="s">""</span><span class="p">)))</span>
+<span class="n">my_labels_sorted</span> <span class="o">&lt;-</span> <span class="nf">sort</span><span class="p">(</span><span class="nf">replicate</span><span class="p">(</span>
+                    <span class="n">n_replicates</span><span class="p">,</span> 
+                    <span class="nf">paste</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="kc">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">dictionary_size</span><span class="p">],</span> <span class="n">label_length</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> <span class="n">collapse</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="p">)</span>
 <span class="n">my_labels_sorted</span>
 <span class="c1">#if you want to mix letters and numbers</span>
 
