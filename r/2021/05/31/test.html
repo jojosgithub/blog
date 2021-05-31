@@ -167,6 +167,18 @@ window.onload = wrap_img;
 <span class="n">frfr6x32runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">32</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
 <span class="c1">#Fractional  Factorial nfactor=7, nruns=64</span>
 <span class="n">frfr7x16runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">32</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">7</span><span class="p">)</span>
+
+
+<span class="c1">#Plackett-Burman 12</span>
+<span class="n">placket_burman12</span> <span class="o">&lt;-</span> <span class="nf">pb</span><span class="p">(</span><span class="m">12</span><span class="p">)</span>
+<span class="c1">#Plackett-Burman 16</span>
+<span class="n">placket_burman16</span> <span class="o">&lt;-</span> <span class="nf">pb</span><span class="p">(</span><span class="m">16</span><span class="p">)</span>
+<span class="c1">#Plackett-Burman 20</span>
+<span class="n">placket_burman20</span> <span class="o">&lt;-</span> <span class="nf">pb</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+
+<span class="c1">#to display them</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DT</span><span class="p">)</span>
+<span class="nf">datatable</span><span class="p">(</span><span class="n">ff2x2</span><span class="p">)</span>
 </pre></div>
 
     </div>
