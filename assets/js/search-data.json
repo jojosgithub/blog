@@ -2,8 +2,8 @@
   
     
         "post0": {
-            "title": "Test DOE",
-            "content": "Same as above but shorter | . library(dplyr) library(rsm) library(FrF2) #Full Factorial n=2 2 levels ff2x2 &lt;- expand.grid(A = c(&quot;+&quot;, &quot;-&quot;), B = c(&quot;+&quot;, &quot;-&quot;)) ff2x2 .",
+            "title": "DOE",
+            "content": "Same as above but shorter | . library(dplyr) library(rsm) library(FrF2) #Full Factorial n=2 2 levels ff2x2 &lt;- expand.grid(A = c(&quot;+&quot;, &quot;-&quot;), B = c(&quot;+&quot;, &quot;-&quot;)) ff2x2 #Full Factorial n=3 ff3x2 &lt;- expand.grid(A = c(&quot;+&quot;, &quot;-&quot;), B = c(&quot;+&quot;, &quot;-&quot;), C = c(&quot;+&quot;, &quot;-&quot;)) #Full Factorial n=4 ff4x2 &lt;-expand.grid(A = c(&quot;+&quot;, &quot;-&quot;), B = c(&quot;+&quot;, &quot;-&quot;), C = c(&quot;+&quot;, &quot;-&quot;), D = c(&quot;+&quot;, &quot;-&quot;)) #Full Factorial n=5 ff5x2 &lt;- expand.grid(A = c(&quot;+&quot;, &quot;-&quot;), B = c(&quot;+&quot;, &quot;-&quot;), C = c(&quot;+&quot;, &quot;-&quot;),D = c(&quot;+&quot;, &quot;-&quot;), E= c(&quot;+&quot;,&quot;-&quot;)) .",
             "url": "https://jojosgithub.github.io/blog/r/2021/05/31/test.html",
             "relUrl": "/r/2021/05/31/test.html",
             "date": " • May 31, 2021"
