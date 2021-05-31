@@ -180,6 +180,15 @@ window.onload = wrap_img;
 <span class="nf">library</span><span class="p">(</span><span class="n">DT</span><span class="p">)</span>
 <span class="nf">datatable</span><span class="p">(</span><span class="n">ff2x2</span><span class="p">)</span>
 <span class="n">ff2x2</span>
+
+
+<span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRdisplay</span><span class="p">)</span>
+
+<span class="n">ff2x2</span> <span class="o">%&gt;%</span>
+  <span class="nf">kable</span><span class="p">(</span><span class="s">"html"</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 
     </div>
