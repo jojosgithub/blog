@@ -1,11 +1,22 @@
 {
   
+    
+        "post0": {
+            "title": "Title",
+            "content": "library(IRdisplay) display_html( &#39;&lt;script&gt; code_show=true; function code_toggle() { if (code_show){ $( &#39;div.input &#39;).hide(); } else { $( &#39;div.input &#39;).show(); } code_show = !code_show } $( document ).ready(code_toggle); &lt;/script&gt; &lt;form action=&quot;javascript:code_toggle()&quot;&gt; &lt;input type=&quot;submit&quot; value=&quot;Click here to toggle on/off the raw code.&quot;&gt; &lt;/form&gt;&#39; ) data &lt;- list(list(x=c(1999, 2000, 2001, 2002), y=c(10, 15, 13, 17), type=&#39;scatter&#39;)) figure &lt;- list(data=data) mimebundle &lt;- list(&#39;application/vnd.plotly.v1+json&#39;=figure) #mimebundle[[]] &lt;- figure IRdisplay::publish_mimebundle(mimebundle) .",
+            "url": "https://jojosgithub.github.io/blog/2021/05/24/test.html",
+            "relUrl": "/2021/05/24/test.html",
+            "date": " • May 24, 2021"
+        }
+        
+    
+  
 
   
   
 
   
-      "page1": {
+      ,"page1": {
           "title": "About Me",
           "content": "I’m a researcher at the National Research Council of Italy at the “Giulio Natta” Institute of Chemical Sciences and Technologies (Scitec-Cnr).I started to be interested in multivariate statistics techniques applied to data from physic-chemical analysis methods 15 years ago during my Ph.D. and to apply it to material science ever since. Enthusiast about programming in R and Python in order to write tools for everyday laboratory activities. FOSS advocate. Messy coder. I’ve written also a book on this topic: “Statistical and Multivariate Analysis in Material Science” that you can find here https://amzn.com/B08W8W5WSF .",
           "url": "https://jojosgithub.github.io/blog/about/",
