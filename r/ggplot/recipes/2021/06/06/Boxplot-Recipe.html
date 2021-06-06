@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Base Boxplot for EDA | Pasta Code</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Base Boxplot for EDA" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="snippets of code I use in my job." />
+<meta property="og:description" content="snippets of code I use in my job." />
+<link rel="canonical" href="https://jojosgithub.github.io/blog/r/ggplot/recipes/2021/06/06/Boxplot-Recipe.html" />
+<meta property="og:url" content="https://jojosgithub.github.io/blog/r/ggplot/recipes/2021/06/06/Boxplot-Recipe.html" />
+<meta property="og:site_name" content="Pasta Code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-06T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://jojosgithub.github.io/blog/r/ggplot/recipes/2021/06/06/Boxplot-Recipe.html","@type":"BlogPosting","headline":"Base Boxplot for EDA","dateModified":"2021-06-06T00:00:00-05:00","datePublished":"2021-06-06T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://jojosgithub.github.io/blog/r/ggplot/recipes/2021/06/06/Boxplot-Recipe.html"},"description":"snippets of code I use in my job.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jojosgithub.github.io/blog/feed.xml" title="Pasta Code" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Pasta Code</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Base Boxplot for EDA</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-06T00:00:00-05:00" itemprop="datePublished">
+        Jun 6, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#r">r</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#ggplot">ggplot</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#recipes">recipes</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/jojosgithub/blog/tree/master/_notebooks/2021-06-06-Boxplot Recipe.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/jojosgithub/blog/master?filepath=_notebooks%2F2021-06-06-Boxplot+Recipe.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/jojosgithub/blog/blob/master/_notebooks/2021-06-06-Boxplot Recipe.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-06-06-Boxplot Recipe.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>TOC</em></p>
+<ul>
+<li>write a function for generating data</li>
+<li>use melt for rearranging data</li>
+<li>create a base plot </li>
+<li>add a boxplot to the base plot</li>
+<li>add a jiiter plot to the base plot</li>
+<li>write a function to automatically select points based on a custom filter</li>
+<li>perform a t.test on data and use ggpubr to add brackets to a boxplot </li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#  loading required libraries for this notebook</span>
+<span class="c1"># +++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+
+<span class="c1">#loading libraries</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggpubr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rstatix</span><span class="p">,</span> <span class="n">warn.conflicts</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggpubr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#  creating a function for generating a dataset</span>
+<span class="c1"># +++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+
+<span class="c1"># building a function for generating data with custom number of rows, means and sds</span>
+
+<span class="n">simpleDataset</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">number_of_rows</span><span class="p">,</span><span class="n">means</span><span class="p">,</span><span class="n">sds</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">l</span> <span class="o">&lt;-</span> <span class="nf">length</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">l</span><span class="p">),</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+	   <span class="nf">eval</span><span class="p">(</span><span class="nf">parse</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nf">paste</span><span class="p">(</span><span class="s">"rnorm("</span><span class="p">,</span><span class="n">number_of_rows</span><span class="p">,</span><span class="s">","</span><span class="p">,</span><span class="n">means</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="s">","</span><span class="p">,</span><span class="n">sds</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="s">")"</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">""</span><span class="p">))))</span> 
+<span class="n">dat</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">((</span><span class="nf">sapply</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">c</span><span class="p">)))</span>
+<span class="n">id</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+<span class="n">dat</span> <span class="o">&lt;-</span>  <span class="nf">cbind</span><span class="p">(</span><span class="n">id</span><span class="o">=</span><span class="n">id</span><span class="p">,</span><span class="n">dat</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+<span class="nf">return</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">dat1</span> <span class="o">&lt;-</span> <span class="nf">simpleDataset</span><span class="p">(</span><span class="n">number_of_rows</span><span class="o">=</span><span class="m">30</span><span class="p">,</span>
+					  <span class="n">means</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="m">200</span><span class="p">,</span><span class="m">205</span><span class="p">),</span>
+				      <span class="n">sds</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">70</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">65</span><span class="p">))</span>
+				  
+<span class="n">dat2</span> <span class="o">&lt;-</span> <span class="nf">simpleDataset</span><span class="p">(</span><span class="n">number_of_rows</span><span class="o">=</span><span class="m">30</span><span class="p">,</span>
+					  <span class="n">means</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">180</span><span class="p">,</span><span class="m">200</span><span class="p">,</span><span class="m">205</span><span class="p">),</span>
+				      <span class="n">sds</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">85</span><span class="p">,</span><span class="m">45</span><span class="p">,</span><span class="m">35</span><span class="p">))</span>
+					  
+<span class="n">dat</span> <span class="o">&lt;-</span>  <span class="nf">rbind</span><span class="p">(</span><span class="n">dat1</span><span class="p">,</span><span class="n">dat2</span><span class="p">)</span>
+<span class="c1"># rearranging table using melt from data.table </span>
+<span class="n">dt.melt</span> <span class="o">&lt;-</span> <span class="nf">melt</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">id.vars</span><span class="o">=</span><span class="s">"id"</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">dt.melt</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">"id"</span><span class="p">,</span><span class="s">"category"</span><span class="p">,</span><span class="s">"var1"</span><span class="p">)</span>
+<span class="n">dt.melt</span><span class="o">$</span><span class="n">ncat</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">dt.melt</span><span class="o">$</span><span class="n">category</span><span class="p">)</span>
+
+<span class="c1">#calculating statistics for adding brackets</span>
+<span class="n">stat.test</span> <span class="o">&lt;-</span> <span class="n">dt.melt</span> <span class="o">%&gt;%</span> <span class="nf">t_test</span><span class="p">(</span><span class="n">var1</span> <span class="o">~</span> <span class="n">ncat</span><span class="p">)</span>
+<span class="n">max_y</span> <span class="o">&lt;-</span> <span class="nf">round</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">dt.melt</span><span class="o">$</span><span class="n">var1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#							base plot settings								   #</span>
+<span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+
+<span class="c1"># IRKernel had a default output size of 7 x 7 inches and a resolution of 120 dpi</span>
+<span class="c1"># each cell can have its own settings</span>
+<span class="c1"># Keep in mind that if you would like to increase your dpi to get higher quality </span>
+<span class="c1"># for printing, on screen your images will "look larger" </span>
+<span class="c1"># using the default settings like to have a base size of 32 in order to have</span>
+<span class="c1"># big readable labels fell free to change your settings here for your base plot</span>
+
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">7</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">7</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">dt.melt</span><span class="p">,</span> 
+			   <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">factor</span><span class="p">(</span><span class="n">ncat</span><span class="p">),</span>
+			       <span class="n">y</span><span class="o">=</span><span class="n">var1</span><span class="p">,</span>
+				   <span class="n">shape</span><span class="o">=</span><span class="n">category</span><span class="p">),</span>
+				   <span class="p">)</span>								<span class="o">+</span>	
+				<span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"ggplot"</span><span class="p">,</span>
+				    <span class="n">x</span>		   <span class="o">=</span> <span class="s">"xlab"</span><span class="p">,</span>
+					<span class="n">y</span>          <span class="o">=</span> <span class="s">"ylab"</span><span class="p">,</span>
+					<span class="n">subtitle</span> <span class="o">=</span> <span class="s">"subtitle"</span><span class="p">,</span>
+					<span class="n">tag</span> <span class="o">=</span> <span class="s">"Fig.1"</span><span class="p">)</span>					<span class="o">+</span>	
+		<span class="nf">theme_classic</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">24</span><span class="p">)</span>			 	<span class="o">+</span>
+		<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">"none"</span><span class="p">,</span>
+			  <span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="o">=</span><span class="s">"bold"</span><span class="p">),</span>
+			  <span class="n">axis.text.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="o">=</span><span class="s">"bold"</span><span class="p">))</span>
+			  
+			  
+<span class="c1"># options(repr.plot.width=14, repr.plot.height=7)</span>
+<span class="c1"># p1 &lt;- base+theme_classic(base_size = 16)</span>
+<span class="c1"># #grid.arrange(p1,p1, ncol=2)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Jiitter plots + boxplot + brackets </span>
+<span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+
+<span class="c1">#adding jiitter plot</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="n">base</span> <span class="o">+</span>
+			<span class="nf">geom_jitter</span><span class="p">(</span>
+						<span class="n">position</span> <span class="o">=</span> <span class="nf">position_jitter</span><span class="p">(</span><span class="m">0.15</span><span class="p">),</span>
+						<span class="n">alpha</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> 
+						<span class="n">size</span> <span class="o">=</span> <span class="m">3</span>
+						<span class="p">)</span> 									<span class="o">+</span>
+			<span class="nf">labs		</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"geom_jitter"</span><span class="p">,</span>
+						<span class="n">subtitle</span> <span class="o">=</span>   <span class="s">"vertical"</span><span class="p">)</span> 			<span class="o">+</span>
+       
+			<span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+						 <span class="n">lwd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>								<span class="o">+</span>
+             
+			<span class="nf">scale_fill_grey</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+							<span class="n">end</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span> 						<span class="o">+</span>
+			<span class="nf">geom_bracket</span><span class="p">(</span> <span class="n">inherit.aes</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+						  <span class="nf">aes</span><span class="p">(</span>
+						  <span class="n">xmin</span> <span class="o">=</span> <span class="n">group1</span><span class="p">,</span>
+						  <span class="n">xmax</span> <span class="o">=</span> <span class="n">group2</span><span class="p">,</span>
+						  <span class="n">label</span> <span class="o">=</span> <span class="nf">signif</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+						  <span class="p">),</span>
+						  <span class="n">data</span> <span class="o">=</span> <span class="n">stat.test</span><span class="p">,</span>
+						  <span class="n">y.position</span> <span class="o">=</span> <span class="n">max_y</span><span class="p">,</span>
+						  <span class="n">step.increase</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>			 	<span class="c1">#+</span>
+			<span class="c1">#aes(color = factor(ncat))						 +</span>
+			<span class="c1">#scale_color_brewer(palette="Reds")</span>
+
+<span class="c1">#uncomment tthe latest two lines if you want colors</span>
+<span class="n">p</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0ABSASgAL+D1L5rp+wlG0ZAAAAAElFTkSuQmCC" width="420" height="420">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1"># Functions for Adding Labels</span>
+<span class="c1">#++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+
+
+<span class="n">set_lab_jitt</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt.melt</span><span class="p">,</span> <span class="n">sel_cat</span><span class="p">,</span> <span class="n">uplim</span><span class="p">,</span> <span class="n">lowlim</span><span class="p">,</span><span class="kc">...</span><span class="p">){</span>
+							<span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">geom_text_repel</span><span class="p">(</span>
+							<span class="n">data</span><span class="o">=</span><span class="n">dt.melt</span><span class="p">[</span><span class="n">category</span><span class="o">==</span><span class="n">sel_cat</span><span class="p">],</span>
+							<span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(((</span><span class="n">var1</span> <span class="o">&gt;</span> <span class="n">uplim</span> <span class="o">|</span> <span class="n">var1</span> <span class="o">&lt;</span> <span class="n">lowlim</span> <span class="p">)),</span>
+							<span class="nf">as.character</span><span class="p">(</span><span class="n">id</span><span class="p">),</span><span class="s">''</span><span class="p">)),</span>
+							<span class="p">)</span>
+							<span class="p">}</span>
+
+<span class="c1">#pv + set_lab_jitt(dt.melt,"X1",180,50)</span>
+<span class="c1">#position = position_jitter(0.2,seed = 1)</span>
+
+<span class="c1">#using gg_text_repel in order to better visualize the labels</span>
+			
+<span class="c1"># creating functions to highlight data depending on n sigma or</span>
+<span class="c1"># a delta from the min and max </span>
+
+<span class="n">NormTextlim</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsigma</span><span class="p">){</span>
+					<span class="n">limup</span>   <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="o">+</span> <span class="n">nsigma</span><span class="o">*</span><span class="nf">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+					<span class="n">limlow</span>  <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">nsigma</span><span class="o">*</span><span class="nf">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+					<span class="n">l</span>       <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="s">"limup"</span><span class="o">=</span><span class="n">limup</span><span class="p">,</span><span class="s">"limlow"</span><span class="o">=</span><span class="n">limlow</span><span class="p">)</span>
+					<span class="nf">return</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+					<span class="p">}</span>
+					
+<span class="n">Utextlim</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ndiv</span><span class="p">){</span>
+					<span class="n">nth_div</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">ndiv</span>
+					<span class="n">limup</span>   <span class="o">&lt;-</span> <span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="o">-</span> <span class="n">nth_div</span>
+					<span class="n">limlow</span>  <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="o">+</span> <span class="n">nth_div</span>
+					<span class="n">l</span>       <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="s">"limup"</span><span class="o">=</span><span class="n">limup</span><span class="p">,</span><span class="s">"limlow"</span><span class="o">=</span><span class="n">limlow</span><span class="p">)</span>
+					<span class="nf">return</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+					<span class="p">}</span>
+
+<span class="c1"># creating a category index</span>
+<span class="n">unique_category</span> <span class="o">&lt;-</span> <span class="nf">unique</span><span class="p">(</span><span class="n">dt.melt</span><span class="o">$</span><span class="n">category</span><span class="p">)</span>		
+<span class="c1">#if outliers are present you can extract their id using the function ggbuild see</span>
+<span class="c1">#https://stackoverflow.com/a/58936654/6483091</span>
+<span class="c1">#out &lt;- ggplot_build(g)[["data"]][[1]][["outliers"]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/r/ggplot/recipes/2021/06/06/Boxplot-Recipe.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>snippets of code I use in my job.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jojosgithub" title="jojosgithub"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/giorgioluciano" title="giorgioluciano"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
