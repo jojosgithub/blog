@@ -185,7 +185,8 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1">#	creating a function for generating a dataset</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#	creating a function for generating a dataset</span>
 <span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
 <span class="c1"># function for generating data with custom number of rows, means and sds</span>
@@ -259,13 +260,13 @@ window.onload = wrap_img;
 			   <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">factor</span><span class="p">(</span><span class="n">ncat</span><span class="p">),</span>
 			       <span class="n">y</span><span class="o">=</span><span class="n">var1</span><span class="p">,</span>
 				   <span class="n">shape</span><span class="o">=</span><span class="n">category</span><span class="p">),</span>
-				   <span class="p">)</span>								<span class="o">+</span>	
+				   <span class="p">)</span>							<span class="o">+</span>	
 				<span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"ggplot"</span><span class="p">,</span>
-				    <span class="n">x</span>		   <span class="o">=</span> <span class="s">"xlab"</span><span class="p">,</span>
-					<span class="n">y</span>          <span class="o">=</span> <span class="s">"ylab"</span><span class="p">,</span>
-					<span class="n">subtitle</span> <span class="o">=</span> <span class="s">"subtitle"</span><span class="p">,</span>
-					<span class="n">tag</span> <span class="o">=</span> <span class="s">"Fig.1"</span><span class="p">)</span>					<span class="o">+</span>	
-		<span class="nf">theme_classic</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">24</span><span class="p">)</span>			 	<span class="o">+</span>
+				<span class="n">x</span>		   <span class="o">=</span> <span class="s">"xlab"</span><span class="p">,</span>
+				<span class="n">y</span>          <span class="o">=</span> <span class="s">"ylab"</span><span class="p">,</span>
+				<span class="n">subtitle</span> <span class="o">=</span> <span class="s">"subtitle"</span><span class="p">,</span>
+					<span class="n">tag</span> <span class="o">=</span> <span class="s">"Fig.1"</span><span class="p">)</span>				<span class="o">+</span>	
+		<span class="nf">theme_classic</span><span class="p">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="m">24</span><span class="p">)</span>			<span class="o">+</span>
 		<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">"none"</span><span class="p">,</span>
 			  <span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="o">=</span><span class="s">"bold"</span><span class="p">),</span>
 			  <span class="n">axis.text.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="o">=</span><span class="s">"bold"</span><span class="p">))</span>
@@ -290,7 +291,8 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1">#	Jiitter plots + boxplot + brackets </span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#	Jiitter plots + boxplot + brackets </span>
 <span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
 <span class="c1">#adding jiitter plot</span>
@@ -358,14 +360,16 @@ window.onload = wrap_img;
 <span class="c1"># Functions for Adding Labels</span>
 <span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
-<span class="n">set_lab_jitt</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt.melt</span><span class="p">,</span> <span class="n">sel_cat</span><span class="p">,</span> <span class="n">uplim</span><span class="p">,</span> <span class="n">lowlim</span><span class="p">,</span><span class="kc">...</span><span class="p">){</span>
-							<span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">geom_text_repel</span><span class="p">(</span>
-							<span class="n">data</span><span class="o">=</span><span class="n">dt.melt</span><span class="p">[</span><span class="n">category</span><span class="o">==</span><span class="n">sel_cat</span><span class="p">],</span>
-							<span class="nf">aes</span><span class="p">(</span>
-							<span class="n">label</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(((</span><span class="n">var1</span> <span class="o">&gt;</span> <span class="n">uplim</span> <span class="o">|</span> <span class="n">var1</span> <span class="o">&lt;</span> <span class="n">lowlim</span> <span class="p">)),</span>
-							<span class="nf">as.character</span><span class="p">(</span><span class="n">id</span><span class="p">),</span><span class="s">''</span><span class="p">)),</span>
-							<span class="p">)</span>
-							<span class="p">}</span>
+<span class="n">set_lab_jitt</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span>
+				<span class="n">dt.melt</span><span class="p">,</span> <span class="n">sel_cat</span><span class="p">,</span> <span class="n">uplim</span><span class="p">,</span> <span class="n">lowlim</span><span class="p">,</span><span class="kc">...</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">geom_text_repel</span><span class="p">(</span>
+					<span class="n">data</span><span class="o">=</span><span class="n">dt.melt</span><span class="p">[</span><span class="n">category</span><span class="o">==</span><span class="n">sel_cat</span><span class="p">],</span>
+					<span class="nf">aes</span><span class="p">(</span>
+						<span class="n">label</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(((</span><span class="n">var1</span> <span class="o">&gt;</span> <span class="n">uplim</span> <span class="o">|</span> <span class="n">var1</span> <span class="o">&lt;</span> <span class="n">lowlim</span> <span class="p">)),</span>
+						<span class="nf">as.character</span><span class="p">(</span><span class="n">id</span><span class="p">),</span><span class="s">''</span><span class="p">)),</span>
+						<span class="p">)</span>
+				<span class="p">}</span>
 
 <span class="c1">#pv + set_lab_jitt(dt.melt,"X1",180,50)</span>
 <span class="c1">#position = position_jitter(0.2,seed = 1)</span>
