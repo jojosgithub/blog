@@ -149,7 +149,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">#  loading required libraries for this notebook</span>
-<span class="c1"># +++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
 <span class="nf">library </span><span class="p">(</span><span class="n">dplyr</span><span class="p">,</span> <span class="n">warn.conflicts</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 <span class="nf">library </span><span class="p">(</span><span class="n">rsm</span><span class="p">,</span> <span class="n">warn.conflicts</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
@@ -171,41 +171,49 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">#  Factorial and Fractional factorial tables</span>
-<span class="c1"># +++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
 <span class="c1">#Full Factorial n=2 2 levels</span>
+
 <span class="n">ff2x2</span> <span class="o">&lt;-</span> <span class="nf">expand.grid</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> <span class="n">B</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">))</span>
 <span class="n">ff2x2</span> 
 
 <span class="c1">#Full Factorial n=3</span>
+
 <span class="n">ff3x2</span> <span class="o">&lt;-</span> <span class="nf">expand.grid</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> <span class="n">B</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span>
                      <span class="n">C</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">))</span>
 <span class="n">ff3x2</span>
 
 <span class="c1">#Full Factorial n=4</span>
+
 <span class="n">ff4x2</span> <span class="o">&lt;-</span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> <span class="n">B</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> 
                     <span class="n">C</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> <span class="n">D</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">))</span>
 <span class="n">ff4x2</span>
 
 <span class="c1">#Full Factorial n=5</span>
+
 <span class="n">ff5x2</span> <span class="o">&lt;-</span> <span class="nf">expand.grid</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> <span class="n">B</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span> 
                      <span class="n">C</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span><span class="n">D</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span> <span class="s">"-"</span><span class="p">),</span>
                      <span class="n">E</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span><span class="s">"-"</span><span class="p">))</span>
 <span class="n">ff5x2</span> 
 
 <span class="c1">#Fractional Factorial nfactor=4, nruns=8</span>
+
 <span class="n">frfr4x8runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">8</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
 <span class="n">frfr4x8runs</span>
 
 <span class="c1">#Fractional Factorial nfactor=5, nruns=16</span>
+
 <span class="n">frfr5x16runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
 <span class="n">frfr5x16runs</span>
 
 <span class="c1">#Fractional  Factorial nfactor=6, nruns=32</span>
+
 <span class="n">frfr6x32runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">32</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
 <span class="n">frfr6x32runs</span>
 
 <span class="c1">#Fractional  Factorial nfactor=7, nruns=64</span>
+
 <span class="n">frfr7x16runs</span> <span class="o">&lt;-</span> <span class="nf">FrF2</span><span class="p">(</span><span class="n">nruns</span><span class="o">=</span><span class="m">32</span><span class="p">,</span><span class="n">nfactors</span><span class="o">=</span><span class="m">7</span><span class="p">)</span>
 <span class="n">frfr7x16runs</span>
 </pre></div>
@@ -225,7 +233,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">#  Plackett-Burman tables</span>
-<span class="c1"># +++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
+<span class="c1">#+++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°+++++++++°</span>
 
 
 <span class="c1">#Plackett-Burman 12</span>
